@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class VacantesService implements IVacantesImplement {
+@Service
+public class ServicioVacantes implements IVacantes {
 
     @Autowired
-    private VacantesRepository repoVacantes;
+    private RepositorioVacantes repoVacantes;
 
     @Override
     public void guardar(Vacante vacante) {
@@ -34,6 +36,12 @@ public class VacantesService implements IVacantesImplement {
             return optional.get();
         }
         return null;
+    }
+
+    @Override
+    public List<Vacante> buscarDestacadas() {
+    
+        return repoVacantes.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
     }
     
 }
