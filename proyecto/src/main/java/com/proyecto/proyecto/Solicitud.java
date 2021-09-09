@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
-
+@Table(name = "Solicitudes")
 @Entity
 public class Solicitud {
 
@@ -17,7 +20,13 @@ public class Solicitud {
 	private Date fecha; 
 	private String comentarios;
 	private String archivo; 
+	
+	@OneToOne
+	@JoinColumn(name = "idVacante")
 	private Vacante vacante;
+
+	@OneToOne
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 
 	public Solicitud() {
