@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,9 @@ public class ControladorVacantes {
 
     @Autowired
     private IVacantes servicioVacantes;
+
+    @Autowired
+    private ICategorias servicioCategorias;
 
 
     @GetMapping("/index")
@@ -60,6 +64,12 @@ public class ControladorVacantes {
         model.addAttribute("vacante", vacante);
         
         return "vacantes/formVacante";
+    }
+
+    @ModelAttribute
+    public void setGenericos(Model model) {
+
+        model.addAttribute("categorias", servicioCategorias.buscarTodas());
     }
 
     @InitBinder

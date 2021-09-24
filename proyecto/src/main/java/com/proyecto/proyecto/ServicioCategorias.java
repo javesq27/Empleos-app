@@ -10,7 +10,7 @@ import java.util.Optional;
 public class ServicioCategorias implements ICategorias {
 
     @Autowired
-    RepositorioCategorias repositorioCategorias;
+    private RepositorioCategorias repositorioCategorias;
 
     @Override
     public void guardar(Categoria categoria) {
@@ -28,7 +28,13 @@ public class ServicioCategorias implements ICategorias {
     }
 
     @Override
-    public Optional<Categoria>  buscarPorId(Integer idCategoria) {
-        return repositorioCategorias.findById(idCategoria);
+    public Categoria buscarPorId(Integer idCategoria) {
+        Optional<Categoria> optional = repositorioCategorias.findById(idCategoria);
+        if(optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
     }
+
+    
 }
