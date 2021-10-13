@@ -2,10 +2,11 @@ package com.proyecto.proyecto;
 
 import java.util.List;
 
-public interface ICategoriasImplement {
+
+public interface ICategorias {
     
     void guardar(Categoria categoria);
     void eliminar(Integer idCategoria);
     List<Categoria> buscarTodas();
-    int buscarPorId(Integer idCategoria);
+    Categoria buscarPorId(Integer idCategoria);
 }
