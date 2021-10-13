@@ -1,28 +1,28 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: rgb(2,0,36);
 background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(148,37,144,1) 0%, rgba(0,212,255,1) 100%);">
-    <a class="navbar-brand" >EmpleosApp</a>
+    <a class="navbar-brand" th:href="@{/}">EmpleosApp</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmpleo" aria-controls="navbarEmpleo" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarEmpleo">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" >
-          <a class="nav-link" >Vacantes</a>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+          <a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
         </li>
-        <li class="nav-item" >
-          <a class="nav-link" >Categorias</a>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+          <a class="nav-link" th:href="@{/categorias/indexPaginate}">Categorias</a>
         </li>
-        <li class="nav-item" >
-            <a class="nav-link" >Usuarios</a>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+            <a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
           </li>           
       </ul>  
-      <div> 
-        <a class="btn btn-secondary" >Ingresar</a>&nbsp;
-        <a class="btn btn-secondary" >Registrarse</a>&nbsp;
+      <div sec:authorize="isAnonymous()"> 
+        <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
+        <a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp;
       </div>
-      <div>
-        <span class="text-light">Bienvenido/a</span>&nbsp;<span class="text-light"></span>&nbsp;
-        <a class="btn btn-secondary" >Salir</a>
+      <div sec:authorize="isAuthenticated()">
+        <span class="text-light">Bienvenido/a</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;
+        <a class="btn btn-secondary" th:href="@{/logout}">Salir</a>
       </div>
     </div>
   </nav>

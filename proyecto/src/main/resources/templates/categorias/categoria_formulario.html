@@ -1,60 +1,39 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>EmpleosApp | Creación de Categorías</title>
-    <link href="/proyecto-cs/proyecto/src/main/resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/proyecto-cs/proyecto/src/main/resources/static//bootstrap/css/jumbotron.css" rel="stylesheet">
-    <link href="/proyecto-cs/proyecto/src/main/resources/static//bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
     
 </head>
 
 <body>
-    <header id="includeContent">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(148,37,144,1) 0%, rgba(0,212,255,1) 100%);">
-    <a class="navbar-brand text-light" ><h3>EmpleosApp</h3></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmpleo" aria-controls="navbarEmpleo" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarEmpleo">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" >
-          <a class="nav-link" >Vacantes</a>
-        </li>
-        <li class="nav-item" >
-          <a class="nav-link" >Categorias</a>
-        </li>
-        <li class="nav-item" >
-            <a class="nav-link" >Usuarios</a>
-          </li>           
-      </ul>  
-      <div> 
-        <a class="btn bg-transparent btn-secondary-outline text-light" >Ingresar</a>&nbsp;
-        <a class="btn bg-transparent btn-secondary-outline text-light" >Registrarse</a>&nbsp;
-      </div>
-      <div>
-        &nbsp;
-        <a class="btn bg-transparent btn-secondary-outline text-light" ><span class="text-light"> Bienvenido/a</span>&nbsp;</a>
-        <a class="btn bg-transparent btn-secondary-outline text-light" >Salir</a>
-      </div>
-    </div>
-     </nav>
-    </header>
+  <header th:insert="fragments/menu :: menu-principal"></header>
+
     <main role="main">     
       <hr>
       <div class="container"> 
         <div class="card text-center ">
           <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
           <div class="card-body">
-            <form  method="post">   
+            <form  th:action="@{/categorias/save}" method="post" th:object="${categoria}">   
+              <div th:if="${#fields.hasErrors('*')}"class='alert alert-danger' role='alert'>
+                Por favor corrija los siguientes errores:
+                <ul>
+                  <li th:each="err : ${#fields.errors('*')}" th:text="${err}">
+                </ul>
+                </div>
               <div class="row justify-content-center" >
                 <div class="col-md-6"> 
                   <div class="form-group">
+                    <input type="hidden" th:field="*{id}">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Escriba el nombre de la categoria" required="required">
+                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Escriba el nombre de la categoria" required="required">
                   </div>
                 </div>                
               </div> 
@@ -62,7 +41,7 @@
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" rows="2"></textarea>
+                    <textarea class="form-control" th:field="*{descripcion}" rows="2"></textarea>
                   </div> 
                 </div>                
               </div> 
@@ -73,13 +52,9 @@
         </div>
       </div> 
     </main>
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
-    <footer class="text-center" style="margin-top: 5vh;">
-        <p>
-          &copy; 2021 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.5.0 | &middot; <a href="#">Privacy</a>
-          &middot; <a href="#">Terms</a>
-        </p>
-    </footer>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="/proyecto-cs/proyecto/src/main/resources/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
