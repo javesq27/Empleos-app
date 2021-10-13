@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -42,8 +44,17 @@ public class ControladorVacantes {
     }
 
     @PostMapping("/save")
-    public String guardar(Vacante vacante, RedirectAttributes attributes) {
+    public String guardar(Vacante vacante, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart) {
         
+        if (!multiPart.isEmpty()) {
+            String ruta = "c:/empleos/img-vacantes/"; 
+            String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+            if (nombreImagen != null){ 
+                
+                vacante.setImagen(nombreImagen); 
+            }
+        }
+
         servicioVacantes.guardar(vacante);
         attributes.addFlashAttribute("msj", "La vacante ha sido guardada!!");
         
