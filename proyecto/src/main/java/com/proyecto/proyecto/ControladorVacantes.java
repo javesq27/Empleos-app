@@ -44,14 +44,17 @@ public class ControladorVacantes {
     }
 
     @PostMapping("/save")
-    public String guardar(Vacante vacante, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart) {
+    public String guardar(Vacante vacante, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart, String path, String data) {
         
         if (!multiPart.isEmpty()) {
-            String ruta = "c:/empleos/img-vacantes/"; 
-            String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+            //String ruta = "c:/empleos/img-vacantes/"; 
+            //String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+            String imagen = "no-image.jpg";
+            String message = "";
+            Boolean nombreImagen = Utileria.saveToFile(imagen, message);
             if (nombreImagen != null){ 
                 
-                vacante.setImagen(nombreImagen); 
+                vacante.setImagen(nombreImagen);
             }
         }
 
