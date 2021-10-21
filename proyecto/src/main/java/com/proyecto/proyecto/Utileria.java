@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Utileria {
     
-    /*
+    
     public static String guardarArchivo(MultipartFile multiPart, String ruta) {
         
         String nombreOriginal = multiPart.getOriginalFilename();
@@ -22,8 +22,8 @@ public class Utileria {
             return null;
         }
     }
-    */
-    public static boolean saveToFile(String path, String data)
+
+    public static String saveToFile(String path, String data)
     {
         try
         {
@@ -31,13 +31,16 @@ public class Utileria {
             OutputStreamWriter output = new OutputStreamWriter(fileStream);
             output.write(data);
             output.close();
+            return path;
         }
         catch (Exception e)
         {
-            return false;
+            return null;
         }
 
-        return true;
+        
     }
+    
+   
 
 }
