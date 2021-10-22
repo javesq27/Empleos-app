@@ -102,9 +102,7 @@ public class Vacante {
         return "Vacante [id=" + id + ", nombre= " + nombre + ", descripcion= " + descripcion + ", fecha= " + fecha + 
         ", destacado= " + destacado + ", imagen= " + imagen + ", salario= " + salario + ", categoria= " + categoria + "estatus= " + estatus + ", detalles= " + detalles + "]";
     }
-    public String setImagen(Boolean nombreImagen) {
-        return null;
-    }
+    
     
     
 }

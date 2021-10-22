@@ -46,9 +46,8 @@ public class ControladorVacantes {
     @PostMapping("/save")
     public String guardar(Vacante vacante, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart) {
         
-        if (!multiPart.isEmpty()) {
-            String ruta = Utileria.saveToFile("img-vacantes", "imagen-vacante"); 
-            String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+        if (!multiPart.isEmpty()) { 
+            String nombreImagen = Utileria.guardarArchivo(multiPart, "img-vacantes");
             
             if (nombreImagen != null){ 
                 
