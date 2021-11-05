@@ -36,10 +36,12 @@ public class ControladorHome {
     public String mostrarIndex(Authentication auth, HttpSession session) {
         String username = auth.getName();
 
+    
         if(session.getAttribute("usuario") == null) {
             Usuario usuario = servicioUsuarios.buscarPorUsername(username);
-            servicioUsuarios.setContraseña(usuario, null);
+            usuario.setPassword(null);
             session.setAttribute("usuario", usuario);
+ 
         }
        
         return "redirect:/";
@@ -54,11 +56,11 @@ public class ControladorHome {
     @PostMapping("/signup")
     public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
 
-        usuario.setEstatus(CodigoEstadoUsuario.HABILITADO);
+        usuario.setEstatus(1); 
 		usuario.setFechaRegistro(new Date()); 
 		
 		Perfil perfil = new Perfil();
-		perfil.setId(CodigoPerfilUsuario.USUARIO);
+		perfil.setId(3); 
 		usuario.agregar(perfil);
         
         servicioUsuarios.guardar(usuario);

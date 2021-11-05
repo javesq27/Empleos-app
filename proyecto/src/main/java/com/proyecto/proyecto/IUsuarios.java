@@ -8,6 +8,5 @@ public interface IUsuarios {
     List<Usuario> buscarTodos();
     Usuario buscarPorId(Integer idUsuario);
     Usuario buscarPorUsername(String username);
-    void setContraseña(Usuario usuario,String contraseña);
     
 }
