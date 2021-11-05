@@ -39,7 +39,7 @@ public class ControladorHome {
     
         if(session.getAttribute("usuario") == null) {
             Usuario usuario = servicioUsuarios.buscarPorUsername(username);
-            usuario.setPassword(null);
+            servicioUsuarios.setContraseña(usuario, null);
             session.setAttribute("usuario", usuario);
  
         }
@@ -56,11 +56,11 @@ public class ControladorHome {
     @PostMapping("/signup")
     public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
 
-        usuario.setEstatus(1); 
+        usuario.setEstatus(CodigoEstadoUsuario.HABILITADO);
 		usuario.setFechaRegistro(new Date()); 
 		
 		Perfil perfil = new Perfil();
-		perfil.setId(3); 
+        perfil.setId(CodigoPerfilUsuario.USUARIO);
 		usuario.agregar(perfil);
         
         servicioUsuarios.guardar(usuario);
