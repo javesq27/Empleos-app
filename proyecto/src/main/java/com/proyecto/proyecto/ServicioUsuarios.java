@@ -46,5 +46,10 @@ public class ServicioUsuarios implements IUsuarios {
         
         return repositorioUsuarios.findByUsername(username);
     }
-    
+
+    @Override
+    public void setContraseña(Usuario usuario, String contraseña) {
+        usuario.setPassword(null);
+    }
+
 }
