@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,6 +43,12 @@ public class ServicioVacantes implements IVacantes {
     public List<Vacante> buscarDestacadas() {
     
         return repoVacantes.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
+    }
+
+    @Override
+    public List<Vacante> buscarByExample(Example<Vacante> example) {
+        
+        return repoVacantes.findAll(example);
     }
     
 }
