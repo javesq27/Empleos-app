@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+
+  <head th:replace="fragments/headerfiles :: baseHead(~{::title}, ~{::link})"> 
 
     <title>EmpleosApp | Creación de Ofertas de Trabajo</title>
-    
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
   </head>
 
