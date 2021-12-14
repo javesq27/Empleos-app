@@ -48,8 +48,8 @@ public class ServicioUsuarios implements IUsuarios {
     }
 
     @Override
-    public void setContraseña(Usuario usuario, String contraseña) {
-        usuario.setPassword(null);
+    public void setContrasenia(Usuario usuario, String contrasenia) {
+        usuario.setPassword(contrasenia);
     }
 
 }
