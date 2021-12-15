@@ -51,7 +51,7 @@ public class ControladorHome {
     
         if(session.getAttribute("usuario") == null) {
             Usuario usuario = servicioUsuarios.buscarPorUsername(username);
-            servicioUsuarios.setContraseña(usuario, null);
+            servicioUsuarios.setContrasenia(usuario, null);
             session.setAttribute("usuario", usuario);
  
         }
