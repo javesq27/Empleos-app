@@ -3,12 +3,14 @@ package com.proyecto.proyecto;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ServicioUsuarios implements IUsuarios {
 
-
+    @Autowired
     private RepositorioUsuarios repositorioUsuarios;
 
     @Override
@@ -50,6 +52,20 @@ public class ServicioUsuarios implements IUsuarios {
     @Override
     public void setContrasenia(Usuario usuario, String contrasenia) {
         usuario.setPassword(contrasenia);
+    }
+
+    @Transactional
+    @Override
+    public int bloquear(int idUsuario) {
+        int rows = repositorioUsuarios.lock(idUsuario);
+		return rows;
+    }
+
+    @Transactional
+    @Override
+    public int activar(int idUsuario) {
+        int rows = repositorioUsuarios.unlock(idUsuario);
+		return rows;
     }
 
 }

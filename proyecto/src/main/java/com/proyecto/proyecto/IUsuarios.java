@@ -9,5 +9,7 @@ public interface IUsuarios {
     Usuario buscarPorId(Integer idUsuario);
     Usuario buscarPorUsername(String username);
     void setContrasenia(Usuario usuario,String contraseña);
+    int bloquear(int idUsuario);
+	int activar(int idUsuario);
     
 }

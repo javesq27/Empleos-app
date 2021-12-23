@@ -47,7 +47,7 @@ public class ControladorVacantes {
     public String guardar(Vacante vacante, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart) {
         
         if (!multiPart.isEmpty()) { 
-            String nombreImagen = Utileria.guardarArchivo(multiPart, "img-vacantes");
+            String nombreImagen = Utileria.guardarArchivo(multiPart, "empleos/img-vacantes");
             
             if (nombreImagen != null){ 
                 

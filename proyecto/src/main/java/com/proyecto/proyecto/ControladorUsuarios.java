@@ -32,5 +32,19 @@ public class ControladorUsuarios {
         return "redirect:/usuarios/index";
     }
 
+    @GetMapping("/unlock/{id}")
+	public String activar(@PathVariable("id") int idUsuario, RedirectAttributes attributes) {
+        servicioUsuarios.activar(idUsuario);
+        attributes.addFlashAttribute("msg", "El usuario fue activado y ahora tiene acceso al sistema.");
+        return "redirect:/usuarios/index";
+	}
+
+    @GetMapping("/lock/{id}")
+	public String bloquear(@PathVariable("id") int idUsuario, RedirectAttributes attributes) {
+        servicioUsuarios.bloquear(idUsuario);
+        attributes.addFlashAttribute("msg", "El usuario fue bloqueado y no tendra acceso al sistema.");
+        return "redirect:/usuarios/index";
+	}
+
 }
 
