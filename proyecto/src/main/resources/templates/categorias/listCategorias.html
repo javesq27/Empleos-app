@@ -52,8 +52,6 @@
 
     <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
-  
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+    <th:block th:include="fragments/scripts :: scripts"></th:block> 
   </body>
 </html>

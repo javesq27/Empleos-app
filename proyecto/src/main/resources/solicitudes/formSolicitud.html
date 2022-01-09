@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerfiles :: baseHead(~{::title}, ~{::link})">
+    
+    <title>EmpleosApp | Aplicar para una Oferta Laboral</title>
+    
+</head>
+<body>
+
+    <header th:insert="fragments/menu :: menu-principal"></header> 
+ 
+     <main role="main">     
+       <hr>
+       <div class="container"> 
+         <div class="row">
+           <div class="col-md-3">            
+             <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Generic placeholder image" width="220" height="220">            
+           </div>
+           <div class="col-md-9">
+             <div class="card">
+               <h4 class="card-header"><strong>Aplicar para la vacante <span th:text="${vacante.nombre}"></span> </strong></h4>              
+               <div class="card-body">
+                 <h5 class="card-title"><strong>Categoría: </strong><span th:text="${vacante.categoria.nombre}"></span></h5>
+                 <h6 class="card-title"><strong>Publicado: </strong><span th:text="${#dates.format(vacante.fecha, 'dd-MM-yyyy')}"></span></h6>
+                 <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}"></span></h6>
+                 <p class="card-text" th:text="${vacante.descripcion}"></p>
+                 <hr>
+                 <form th:action="@{/solicitudes/save}" th:object="${solicitud}" method="post" enctype="multipart/form-data">                                                 
+                   <div class="row">
+                     <div class="col-md-6"> 
+                       <div class="form-group">
+                         <input type="hidden" th:name="vacante.id" th:value="${vacante.id}">
+                         <label for="comentarios">Comentarios</label>
+                         <textarea class="form-control" name="comentarios" th:field="*{comentarios}" id="comentarios" rows="2"></textarea>
+                       </div> 
+                     </div> 
+                     <div class="col-md-6"> 
+                       <div class="form-group">
+                         <label for="archivoCV">Curriculm Vitae</label>
+                         <input type="file" class="form-control-file" name="archivoCV" id="archivoCV">
+                         <p class="help-block">Archivos [ pdf,doc,docx ]</p>
+                       </div>
+                     </div>
+                   </div> 
+                   <hr>
+                   <button type="submit" title="Enviar mi Solicitud." class="btn btn-primary">Enviar</button>  
+                 </form>
+               </div>
+             </div> 
+           </div>
+         </div>
+       </div> <!-- /container -->
+     </main>
+     <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+     <th:block th:include="fragments/scripts :: scripts"></th:block>
+</body>
+</html>
