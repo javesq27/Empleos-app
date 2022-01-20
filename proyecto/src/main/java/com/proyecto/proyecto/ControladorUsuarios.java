@@ -27,8 +27,14 @@ public class ControladorUsuarios {
 
     @GetMapping("/delete/{id}")
     public String eliminar(@PathVariable("id") int idUsuario, RedirectAttributes attributes) {
-        servicioUsuarios.eliminar(idUsuario);
-        attributes.addFlashAttribute("msg", "El usuario ha sido eliminado");
+        try {
+            servicioUsuarios.eliminar(idUsuario);
+            attributes.addFlashAttribute("msg", "El usuario ha sido eliminado");
+
+        }catch(Exception ex) {
+            attributes.addFlashAttribute("msg", "No es posible eliminar el usuario");
+        }
+        
         return "redirect:/usuarios/index";
     }
 
