@@ -29,12 +29,17 @@ public class ControladorVacantes {
     @Autowired
     private ICategorias servicioCategorias;
 
+    
+    @Autowired
+    private ServicioArchivos servicioArchivos;
+
+
 
     @GetMapping("/index")
     public String mostrarVacantes(Model model) {
         List<Vacante> lista =  servicioVacantes.buscarTodas();
         model.addAttribute("vacantes", lista);
-        return "vacantes/listaVacantes";
+        return "vacantes/listVacantes";
     }
 
     @GetMapping("/create")
@@ -47,7 +52,7 @@ public class ControladorVacantes {
     public String guardar(Vacante vacante, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart) {
         
         if (!multiPart.isEmpty()) { 
-            String nombreImagen = Utileria.guardarArchivo(multiPart, "empleos/img-vacantes");
+            String nombreImagen = servicioArchivos.guardarArchivo(multiPart, "/empleos/img-vacantes/");
             
             if (nombreImagen != null){ 
                 
@@ -75,6 +80,14 @@ public class ControladorVacantes {
         model.addAttribute("vacante", vacante);
         
         return "vacantes/formVacante";
+    }
+
+    @GetMapping("/view/{id}")
+    public String verDetalle(@PathVariable("id") int idVacante, Model model){
+        Vacante vacante = servicioVacantes.buscarPorId(idVacante);
+
+        model.addAttribute("vacante", vacante);
+        return "detalle";
     }
 
     @ModelAttribute

@@ -40,7 +40,7 @@
                 <div class="card bg-light mb-3" >
                   <div class="card-body">
                     <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                    <p class="card-text" th:utext="${vacante.detalles}"></p>
+                    <p class="card-text" th:text="${vacante.detalles}"></p>
                   </div>
                 </div>
                 <div sec:authorize="isAnonymous()"> 

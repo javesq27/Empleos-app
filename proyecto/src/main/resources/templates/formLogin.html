@@ -30,6 +30,7 @@
             <div th:if="${param.error}">
                <span class="text-danger">Usuario / Password incorrectos!</span>
             </div>
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
               <div class="row">
                 <div class="col-md-4"> 
                 </div>  
@@ -42,7 +43,7 @@
                   <label for="password" class="sr-only">Password</label>
                   <input type="password" name="password" id="password" class="form-control" placeholder="Password" required><br>
                   <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-                  <p class="text-primary" style="font-size: small">¿Todavía no estas registrado? <a>Regístrate</a></p>
+                  <p class="text-primary" style="font-size: small">¿Todavía no estas registrado? <a th:href="@{/signup}">Regístrate</a></p>
                 </div>
                 <div class="col-md-4"> 
                 </div>
