@@ -34,6 +34,9 @@ public class ControladorSolicitudes {
     @Autowired
     private IUsuarios servicioUsuarios;
 
+    @Autowired
+    private ServicioArchivos servicioArchivos;
+
 
     @GetMapping("/index")
     public String mostrarIndex(Model model) {
@@ -57,7 +60,7 @@ public class ControladorSolicitudes {
         String username = authentication.getName();
 
         if(!multiPart.isEmpty()) {
-            String nombreArchivo = Utileria.guardarArchivo(multiPart, "empleos/cv-solicitudes");
+            String nombreArchivo = servicioArchivos.guardarArchivo(multiPart, "/empleos/cv-solicitudes/");
 
             if(nombreArchivo != null) {
                 solicitud.setArchivo(nombreArchivo);
