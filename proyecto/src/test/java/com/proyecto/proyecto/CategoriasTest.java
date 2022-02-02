@@ -2,7 +2,6 @@ package com.proyecto.proyecto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,7 +28,7 @@ class CategoriasTest {
 	}
 
 	@Test
-	void testCrearCategoriaErronea() {
+	void testCrearCategoriaSinId() {
 		Categoria categoria = new Categoria();
 		categoria.setId(null);
 		categoria.setNombre("Construccion");
@@ -39,17 +38,26 @@ class CategoriasTest {
 	}
 
 	@Test
-	void testBuscarPropiedadCategoria() {
-		Categoria categoria = repoCategorias.findById(1).orElse(null);
-		assertEquals("Finanzas", categoria.getNombre());
+	void testCrearCategoriaSinNombre() {
+		Categoria categoria = new Categoria();
+		categoria.setId(10);
+		categoria.setNombre("");
+		categoria.setDescripcion("Trabajos relacionados con la construccion");
+		repoCategorias.save(categoria);
+		assertNull(repoCategorias.findById(10).get());
 	}
 
 	@Test
-	void testBuscarPropiedadErroneaCategoria() {
-		Categoria categoria = repoCategorias.findById(1).orElse(null);
-		assertNotEquals("Siiiiuuu", categoria.getNombre());
-
+	void testCrearCategoriaSinDescripcion() {
+		Categoria categoria = new Categoria();
+		categoria.setId(10);
+		categoria.setNombre("Construccion");
+		categoria.setDescripcion("");
+		repoCategorias.save(categoria);
+		assertNull(repoCategorias.findById(10).get());
 	}
+
+	
 
 	@Test
 	void testActualizarDescripcionCategoria() {
@@ -69,19 +77,14 @@ class CategoriasTest {
 
 	@Test
 	void testBorrarCategoria() {
-		boolean categoriaExiste = repoCategorias.findById(16).isPresent();
+		assertTrue(repoCategorias.findById(16).isPresent());
 		repoCategorias.deleteById(16);
-		assertTrue(categoriaExiste);
+		assertFalse(repoCategorias.findById(16).isPresent());
 		
 		
 	}
 
-	@Test
-	void testBorrarCategoriaInexistente() {
-		boolean categoriaNoExiste = repoCategorias.findById(1000).isPresent();
-		repoCategorias.deleteById(1000);
-		assertFalse(categoriaNoExiste);
-	}
+	
 
 	
 		
