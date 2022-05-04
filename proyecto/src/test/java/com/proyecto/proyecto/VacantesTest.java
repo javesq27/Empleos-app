@@ -11,6 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
+
+import com.proyecto.proyecto.entities.Categoria;
+import com.proyecto.proyecto.entities.Vacante;
+import com.proyecto.proyecto.repositories.RepositorioCategorias;
+import com.proyecto.proyecto.repositories.RepositorioVacantes;
+
 import java.text.ParseException;
 
 @SpringBootTest

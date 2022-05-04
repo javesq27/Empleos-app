@@ -1,6 +1,9 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.controllers;
 
 import java.util.List;
+
+import com.proyecto.proyecto.entities.Categoria;
+import com.proyecto.proyecto.services.ICategorias;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

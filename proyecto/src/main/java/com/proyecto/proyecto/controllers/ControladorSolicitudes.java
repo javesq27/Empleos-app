@@ -1,10 +1,18 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+
+import com.proyecto.proyecto.entities.Solicitud;
+import com.proyecto.proyecto.entities.Usuario;
+import com.proyecto.proyecto.entities.Vacante;
+import com.proyecto.proyecto.services.ISolicitudes;
+import com.proyecto.proyecto.services.IUsuarios;
+import com.proyecto.proyecto.services.IVacantes;
+import com.proyecto.proyecto.services.ServicioArchivos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;

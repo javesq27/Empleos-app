@@ -1,7 +1,10 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.proyecto.proyecto.entities.Usuario;
+import com.proyecto.proyecto.repositories.RepositorioUsuarios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

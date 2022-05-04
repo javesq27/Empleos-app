@@ -1,10 +1,13 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.proyecto.proyecto.entities.Categoria;
+import com.proyecto.proyecto.repositories.RepositorioCategorias;
 
 @Service
 public class ServicioCategorias implements ICategorias {

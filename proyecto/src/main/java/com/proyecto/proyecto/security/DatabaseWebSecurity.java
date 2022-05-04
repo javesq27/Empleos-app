@@ -1,4 +1,4 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.security;
 
 import javax.sql.DataSource;
 

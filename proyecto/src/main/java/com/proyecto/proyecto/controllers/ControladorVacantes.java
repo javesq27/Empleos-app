@@ -1,8 +1,13 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import com.proyecto.proyecto.entities.Vacante;
+import com.proyecto.proyecto.services.ICategorias;
+import com.proyecto.proyecto.services.IVacantes;
+import com.proyecto.proyecto.services.ServicioArchivos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;

@@ -1,7 +1,10 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.proyecto.proyecto.entities.Vacante;
+import com.proyecto.proyecto.repositories.RepositorioVacantes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

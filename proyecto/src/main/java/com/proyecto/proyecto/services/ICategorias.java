@@ -1,6 +1,8 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.services;
 
 import java.util.List;
+
+import com.proyecto.proyecto.entities.Categoria;
 
 
 public interface ICategorias {

@@ -1,4 +1,4 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.utils;
 
 public class CodigoPerfilUsuario {
     public static final Integer ADMINISTRADOR = 1;

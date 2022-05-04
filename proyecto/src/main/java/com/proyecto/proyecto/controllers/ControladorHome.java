@@ -1,10 +1,19 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.controllers;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import com.proyecto.proyecto.entities.Perfil;
+import com.proyecto.proyecto.entities.Usuario;
+import com.proyecto.proyecto.entities.Vacante;
+import com.proyecto.proyecto.services.ICategorias;
+import com.proyecto.proyecto.services.IUsuarios;
+import com.proyecto.proyecto.services.IVacantes;
+import com.proyecto.proyecto.utils.CodigoEstadoUsuario;
+import com.proyecto.proyecto.utils.CodigoPerfilUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;

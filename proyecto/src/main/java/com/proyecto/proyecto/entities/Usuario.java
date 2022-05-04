@@ -1,4 +1,4 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.entities;
 
 import java.util.Date;
 import java.util.LinkedList;

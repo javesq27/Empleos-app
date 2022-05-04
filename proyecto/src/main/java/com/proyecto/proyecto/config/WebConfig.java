@@ -1,4 +1,4 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

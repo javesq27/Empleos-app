@@ -1,4 +1,4 @@
-package com.proyecto.proyecto;
+package com.proyecto.proyecto.utils;
 
 public class CodigoEstadoUsuario {
     public static final Integer HABILITADO = 1;
