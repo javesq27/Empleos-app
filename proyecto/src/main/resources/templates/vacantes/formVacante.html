@@ -73,13 +73,10 @@
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-check">
-                    <label class="form-check-label" for="destacado0"></label><br>
                     <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1" checked="checked">
-                    <label class="form-check-label" for="destacado1">Destacado</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
-                    <label class="form-check-label" for="destacado2">No Destacado</label>
                   </div>
                 </div>
               </div>    
@@ -106,8 +103,7 @@
                   </div> 
                 </div> 
                 <div class="col-md-3">
-                  <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="200" height="200">
                 </div>
               </div> 
               <button type="submit" class="btn btn-primary">Guardar</button>  

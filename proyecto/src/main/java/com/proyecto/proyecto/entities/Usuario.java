@@ -4,15 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -21,12 +13,19 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
+    @Column
     private String username;
+    @Column
     private String nombre;
+    @Column
     private String email;
+    @Column
     private String password;
+    @Column
     private Integer estatus;
+    @Column
     private Date fechaRegistro;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "UsuarioPerfil",

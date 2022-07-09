@@ -9,10 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.proyecto.proyecto.entities.Solicitud;
 import com.proyecto.proyecto.entities.Usuario;
 import com.proyecto.proyecto.entities.Vacante;
-import com.proyecto.proyecto.services.ISolicitudes;
-import com.proyecto.proyecto.services.IUsuarios;
-import com.proyecto.proyecto.services.IVacantes;
-import com.proyecto.proyecto.services.ServicioArchivos;
+import com.proyecto.proyecto.services.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -20,12 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,6 +33,9 @@ public class ControladorSolicitudes {
 
     @Autowired
     private IUsuarios servicioUsuarios;
+
+    @Autowired
+    private ServicioMails servicioMails;
 
     @Autowired
     private ServicioArchivos servicioArchivos;
@@ -92,6 +87,11 @@ public class ControladorSolicitudes {
         attributes.addFlashAttribute("msg", "La solicitud ha sido eliminada");
 
         return "redirect:/solicitudes/index";
+    }
+
+    @GetMapping("/revisar/{id}")
+    public void revisar(@PathVariable("id") int idSolicitud){
+        servicioSolicitudes.revisar(idSolicitud);
     }
 
     @InitBinder

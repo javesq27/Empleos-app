@@ -2,15 +2,7 @@ package com.proyecto.proyecto.entities;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-
+import javax.persistence.*;
 
 
 @Entity
@@ -19,14 +11,23 @@ public class Vacante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
+    @Column
     private String nombre;
+    @Column
     private String descripcion;
+    @Column
     private Date fecha;
+    @Column
     private Double salario;
+    @Column
     private Integer destacado;
-    private String imagen ="no-image.png";
+    @Column
+    private String imagen;
+    @Column
     private String estatus;
+    @Column
     private String detalles;
     @OneToOne
     @JoinColumn(name = "idCategoria")

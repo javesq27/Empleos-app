@@ -40,7 +40,7 @@
         <hr>
         <div class="row" th:each="vacante : ${vacantes}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="220" height="220">            
+            <img href="/home/alexis/Proyectos/Personal/Empleos-app/proyecto/src/main/resources/static/images/empleo.jpg" width="220" height="220">
           </div>
           <div class="col-md-9">
             <h2 th:text="${vacante.nombre}"></h2>

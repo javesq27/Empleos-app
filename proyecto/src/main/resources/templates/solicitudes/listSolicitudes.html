@@ -34,9 +34,9 @@
                   <td th:text="${solicitud.usuario.nombre}"></td>
                   <td th:text="${#dates.format(solicitud.fecha, 'dd-MM-yyyy')}"></td>
                   <td>
-                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
-            
+                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"/></a>
                     <a th:href="@{/cv/{archivo} (archivo=${solicitud.archivo}) } " class="btn btn-success btn-sm" role="button" title="Descargar Curriculum Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
+                    <a th:href="@{/solicitudes/revisar/{id} (id=${solicitud.id}) }" class="btn btn-success btn-sm" role="button" title="Revisar"><i class="bi bi-eye"></i></a>
                   </td>
                 </tr>
                 

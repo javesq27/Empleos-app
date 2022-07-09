@@ -52,7 +52,6 @@ public class ControladorCategorias {
         try {
             servicioCategorias.eliminar(idCategoria);
             attributes.addFlashAttribute("msg", "La categoria ha sido eliminada");
-
         }catch(Exception ex) {
             attributes.addFlashAttribute("msg", "No es posible eliminar la categoria");
         }
@@ -64,7 +63,6 @@ public class ControladorCategorias {
     public String editar(@PathVariable("id") int idCategoria, Model model) {
         Categoria categoria = servicioCategorias.buscarPorId(idCategoria);
         model.addAttribute("categoria", categoria);
-
         return "categorias/formCategoria";
     }
 }

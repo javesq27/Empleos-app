@@ -9,9 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.proyecto.proyecto.entities.Perfil;
 import com.proyecto.proyecto.entities.Usuario;
 import com.proyecto.proyecto.entities.Vacante;
-import com.proyecto.proyecto.services.ICategorias;
-import com.proyecto.proyecto.services.IUsuarios;
-import com.proyecto.proyecto.services.IVacantes;
+import com.proyecto.proyecto.services.*;
 import com.proyecto.proyecto.utils.CodigoEstadoUsuario;
 import com.proyecto.proyecto.utils.CodigoPerfilUsuario;
 
@@ -42,6 +40,12 @@ public class ControladorHome {
     private IVacantes servicioVacantes;
 
     @Autowired
+    private IMails servicioMails;
+
+    @Autowired
+    private Observador observador;
+
+    @Autowired
     private IUsuarios servicioUsuarios;
 
     @Autowired
@@ -56,15 +60,11 @@ public class ControladorHome {
     @GetMapping("/index")
     public String mostrarIndex(Authentication auth, HttpSession session) {
         String username = auth.getName();
-
-    
         if(session.getAttribute("usuario") == null) {
             Usuario usuario = servicioUsuarios.buscarPorUsername(username);
             servicioUsuarios.setContrasenia(usuario, null);
             session.setAttribute("usuario", usuario);
- 
         }
-       
         return "redirect:/";
     }
 
@@ -85,7 +85,7 @@ public class ControladorHome {
 		usuario.setFechaRegistro(new Date()); 
 		
 		Perfil perfil = new Perfil();
-        perfil.setId(CodigoPerfilUsuario.USUARIO);
+        perfil.setId(CodigoPerfilUsuario.ADMINISTRADOR);
 		usuario.agregar(perfil);
         
         servicioUsuarios.guardar(usuario);
@@ -95,9 +95,7 @@ public class ControladorHome {
 
     @GetMapping("/search")
     public String buscar(@ModelAttribute("search") Vacante vacante, Model model) {
-        
         ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
-
         Example<Vacante> example = Example.of(vacante, matcher);
         List<Vacante> lista = servicioVacantes.buscarByExample(example);
         model.addAttribute("vacantes", lista);
@@ -130,6 +128,12 @@ public class ControladorHome {
         model.addAttribute("vacantes", servicioVacantes.buscarDestacadas());
         model.addAttribute("categorias", servicioCategorias.buscarTodas());
         model.addAttribute("search", vacanteSearch);
+    }
+
+
+    @GetMapping("/sendEmail")
+    public void email(){
+        observador.onUpdate();
     }
 
 

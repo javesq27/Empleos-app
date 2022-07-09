@@ -8,6 +8,7 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String perfil;
 
     public void setId(Integer id) {

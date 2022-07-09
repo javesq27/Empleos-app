@@ -7,6 +7,8 @@ import com.proyecto.proyecto.entities.Solicitud;
 
 public interface ISolicitudes {
     void guardar(Solicitud solicitud);
+
+    void revisar(int idSolicitud);
     void eliminar(Integer idSolicitud);
     List<Solicitud> buscarTodas();
     Optional<Solicitud> buscarPorId(Integer idSolicitud);

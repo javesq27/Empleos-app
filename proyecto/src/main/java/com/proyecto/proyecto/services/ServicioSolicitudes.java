@@ -14,9 +14,20 @@ public class ServicioSolicitudes implements ISolicitudes{
     @Autowired
     RepositorioSolicitudes repositorioSolicitudes;
 
+    @Autowired
+    ServicioMails servicioMails;
+
     @Override
     public void guardar(Solicitud solicitud) {
         repositorioSolicitudes.save(solicitud);
+    }
+
+    @Override
+    public void revisar(int idSolicitud){
+        Solicitud solicitud = repositorioSolicitudes.getById(idSolicitud);
+        solicitud.setObservador(servicioMails);
+        solicitud.setRevisada(true);
+        solicitud.notificar();
     }
 
     @Override

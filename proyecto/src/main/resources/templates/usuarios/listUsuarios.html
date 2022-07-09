@@ -45,7 +45,7 @@
                   <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }"></td>
                   
                   <td>
-                    <a th:href="@{/usuarios/delete/{id} (id=${usuario.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/usuarios/sendEmail}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
                     <span th:switch="${usuario.estatus}"> 
                     
                       <a th:case="'1'" th:href="@{/usuarios/lock/{id} (id=${usuario.id}) }" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	

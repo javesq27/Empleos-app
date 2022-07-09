@@ -1,25 +1,28 @@
 package com.proyecto.proyecto.entities;
 
+import com.proyecto.proyecto.services.Observador;
+import com.proyecto.proyecto.services.SujetoObservado;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.util.Observable;
+import javax.persistence.*;
 
 
 @Table(name = "Solicitudes")
 @Entity
-public class Solicitud {
+public class Solicitud implements SujetoObservado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Integer id;
-	private Date fecha; 
+	@Column
+	private Date fecha;
+	@Column
 	private String comentarios;
-	private String archivo; 
+	@Column
+	private String archivo;
 	
 	@OneToOne
 	@JoinColumn(name = "idVacante")
@@ -29,7 +32,13 @@ public class Solicitud {
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 
+	@Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+	private boolean revisada;
+
+	private ArrayList<Observador> listaObservador;
+
 	public Solicitud() {
+		this.listaObservador=new ArrayList<>();
 
 	}
 
@@ -85,10 +94,33 @@ public class Solicitud {
 		this.comentarios = comentarios;
 	}
 
+	public boolean isRevisada() {
+		return revisada;
+	}
+
+	public void setRevisada(boolean revisada) {
+		this.revisada = revisada;
+	}
+
 	@Override
 	public String toString() {
 		return "Solicitud [id=" + id + ", fecha=" + fecha + ", comentarios=" + comentarios + ", archivo=" + archivo
-				+ ", vacante=" + vacante + ", usuario=" + usuario + "]";
+				+ ", vacante=" + vacante + ", usuario=" + usuario +", revisada= " + revisada +"]";
 	}
 
+	public ArrayList<Observador> getObservador() {
+		return listaObservador;
+	}
+
+	public void setObservador(Observador observador) {
+		listaObservador = new ArrayList<>();
+		listaObservador.add(observador);
+	}
+
+	@Override
+	public void notificar() {
+		for(Observador o:listaObservador){
+			o.onUpdate();
+		}
+	}
 }
