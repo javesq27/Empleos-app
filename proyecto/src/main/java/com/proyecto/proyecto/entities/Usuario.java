@@ -1,15 +1,25 @@
 package com.proyecto.proyecto.entities;
 
+import com.proyecto.proyecto.services.Observador;
+import com.proyecto.proyecto.services.ServicioMails;
+import org.springframework.mail.SimpleMailMessage;
+
+import java.time.Instant;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "Usuarios")
-public class Usuario {
+public class Usuario implements Observador {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,4 +115,32 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
     }
 
+    @Override
+    public void onUpdate(ServicioMails servicioMails) {
+
+
+        Properties props;
+        props = System.getProperties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp-mail.outlook.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.password","conteros1");
+        props.put("mail.smtp.from","alexisarto@hotmail.com");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("alexisarto@hotmail.com", "conteros1");
+                    }
+                });
+        MimeMessage simpleMailMessage = new MimeMessage(session);
+        try {
+            simpleMailMessage.setFrom("alexisarto@hotmail.com");
+            simpleMailMessage.setRecipients(Message.RecipientType.TO,"conteros24@gmail.com");
+            simpleMailMessage.setSubject("CompuEmpleos");
+            simpleMailMessage.setText("Su solicitud ha sido revisada");
+            Transport.send(simpleMailMessage);
+        } catch (MessagingException e) {e.printStackTrace();}
+    }
 }

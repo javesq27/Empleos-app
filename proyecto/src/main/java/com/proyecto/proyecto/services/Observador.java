@@ -4,6 +4,6 @@ import com.proyecto.proyecto.entities.Usuario;
 
 public interface Observador {
 
-    public void onUpdate();
+    void onUpdate(ServicioMails servicioMails);
 
 }

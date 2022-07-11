@@ -23,11 +23,10 @@ public class ServicioSolicitudes implements ISolicitudes{
     }
 
     @Override
-    public void revisar(int idSolicitud){
+    public void revisar(int idSolicitud, ServicioMails servicioMails){
         Solicitud solicitud = repositorioSolicitudes.getById(idSolicitud);
-        solicitud.setObservador(servicioMails);
         solicitud.setRevisada(true);
-        solicitud.notificar();
+        solicitud.notificar(servicioMails);
     }
 
     @Override

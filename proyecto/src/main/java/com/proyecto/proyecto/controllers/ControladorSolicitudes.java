@@ -90,8 +90,9 @@ public class ControladorSolicitudes {
     }
 
     @GetMapping("/revisar/{id}")
-    public void revisar(@PathVariable("id") int idSolicitud){
-        servicioSolicitudes.revisar(idSolicitud);
+    public String revisar(@PathVariable("id") int idSolicitud){
+        servicioSolicitudes.revisar(idSolicitud,servicioMails);
+        return "redirect:/solicitudes/index";
     }
 
     @InitBinder
@@ -99,6 +100,7 @@ public class ControladorSolicitudes {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
+
 
 
 

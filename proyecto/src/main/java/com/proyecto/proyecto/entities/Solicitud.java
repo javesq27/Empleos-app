@@ -1,12 +1,10 @@
 package com.proyecto.proyecto.entities;
 
 import com.proyecto.proyecto.services.Observador;
+import com.proyecto.proyecto.services.ServicioMails;
 import com.proyecto.proyecto.services.SujetoObservado;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Observable;
 import javax.persistence.*;
 
 
@@ -35,15 +33,22 @@ public class Solicitud implements SujetoObservado {
 	@Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
 	private boolean revisada;
 
-	private ArrayList<Observador> listaObservador;
 
 	public Solicitud() {
-		this.listaObservador=new ArrayList<>();
-
 	}
 
 	public Solicitud(Date fecha) {
 		this.fecha = new Date();
+	}
+
+	public Solicitud(Integer id, Date fecha, String comentarios, String archivo, Vacante vacante, Usuario usuario, boolean revisada) {
+		this.id = id;
+		this.fecha = fecha;
+		this.comentarios = comentarios;
+		this.archivo = archivo;
+		this.vacante = vacante;
+		this.usuario = usuario;
+		this.revisada = revisada;
 	}
 
 	public Integer getId() {
@@ -108,19 +113,9 @@ public class Solicitud implements SujetoObservado {
 				+ ", vacante=" + vacante + ", usuario=" + usuario +", revisada= " + revisada +"]";
 	}
 
-	public ArrayList<Observador> getObservador() {
-		return listaObservador;
-	}
-
-	public void setObservador(Observador observador) {
-		listaObservador = new ArrayList<>();
-		listaObservador.add(observador);
-	}
 
 	@Override
-	public void notificar() {
-		for(Observador o:listaObservador){
-			o.onUpdate();
-		}
+	public void notificar(ServicioMails servicioMails) {
+		this.usuario.onUpdate(servicioMails);
 	}
 }

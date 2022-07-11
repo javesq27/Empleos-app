@@ -2,8 +2,6 @@ package com.proyecto.proyecto.services;
 
 import com.proyecto.proyecto.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,7 +17,7 @@ import java.time.Instant;
 import java.util.Date;
 
 @Service("ServicioMails")
-public class ServicioMails implements IMails, Observador{
+public class ServicioMails implements IMails{
     @Autowired
     private JavaMailSenderImpl mailSender;
 
@@ -51,14 +49,5 @@ public class ServicioMails implements IMails, Observador{
         mailSender.send(mimeMessage);
     }
 
-    @Override
-    public void onUpdate() {
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo("conteros24@gmail.com");
-        simpleMailMessage.setSubject("Solicitud en Compuempleos");
-        simpleMailMessage.setText("Su solicitud en Compuempleos ha sido revisada");
-        simpleMailMessage.setSentDate(Date.from(Instant.now()));
-        simpleMailMessage.setFrom("conteros24@gmail.com");
-        sendEmailSimple(simpleMailMessage);
-    }
+
 }

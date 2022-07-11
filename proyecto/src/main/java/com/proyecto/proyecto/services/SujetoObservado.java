@@ -1,7 +1,7 @@
 package com.proyecto.proyecto.services;
 
+import com.proyecto.proyecto.entities.Usuario;
+
 public interface SujetoObservado {
-
-    public void notificar();
-
+    void notificar(ServicioMails servicioMails);
 }
